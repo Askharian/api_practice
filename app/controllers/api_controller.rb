@@ -12,7 +12,13 @@ class ApiController < ApplicationController
     #
     # Ref: http://isithackday.com/arrpi.php?
     #================================================
-    @result = "Replace this string with your answer"
+
+    text = URI.encode(params['text'])
+    url = "http://isithackday.com/arrpi.php?text=#{text}&format=json"
+    result = open(url).read
+    parsed_result = JSON.parse(result)
+
+    @result = parsed_result['translation']['pirate']
   end
 
 
@@ -32,7 +38,12 @@ class ApiController < ApplicationController
     # Ref: https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA
     # as an example
     #================================================
-    @coords = "An array with your coordinates inside"
+
+    address = URI.encode(params['address'])
+    url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{address}"
+    result = open(url).read
+    parsed = JSON.parse(result)
+    @coords = parsed['results'][0]['geometry']['location']
   end
 
   def meme_gen_form
