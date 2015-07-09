@@ -61,6 +61,8 @@ class ApiController < ApplicationController
     #
     # Ref: http://apimeme.com/
     #================================================
+    text = URI.encode(params['text'])
+    @src = "http://apimeme.com/meme?meme=Confession+Bear&top=&bottom=#{text}"
   end
 
   def congress_form
