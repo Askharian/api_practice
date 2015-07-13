@@ -44,6 +44,16 @@ class AuthApiController < ApplicationController
     #
     # Ref: https://www.mashape.com/faceplusplus/faceplusplus-face-detection
     #================================================
+    # These code snippets use an open-source library. http://unirest.io/ruby
+    image_url = URI.encode(params[:image])
+    response = Unirest.get "https://faceplusplus-faceplusplus.p.mashape.com/detection/detect?attribute=glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url=#{image_url}",
+      headers:{
+        "X-Mashape-Key" => "mLkvKPbISwmsh9qoL0dOebGWtsS2p1mK4hZjsnLY30eb9bP4DO",
+        "Accept" => "application/json"
+      }
+    # raise response.raw_body.inspect
+
+    @result = response.body['face'][0]['attribute']['age']['value']
   end
 
   def sentiment_analysis_form
