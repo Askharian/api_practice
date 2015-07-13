@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get('/api/coord_process', { :controller => "api", :action => "coord_process"})
   get('/api/meme_gen_form', { :controller => "api", :action => "meme_gen_form"})
   get('/api/meme_process', { :controller => "api", :action => "meme_process_form"})
+  get('/api/divvy', { :controller => "api", :action => "nearest_station"})
+
 
 
   get('/auth_api/mashape_intro_form', { :controller => "auth_api", :action => "mashape_intro_form"})

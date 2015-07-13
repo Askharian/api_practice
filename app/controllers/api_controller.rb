@@ -12,13 +12,7 @@ class ApiController < ApplicationController
     #
     # Ref: http://isithackday.com/arrpi.php?
     #================================================
-
-    text = URI.encode(params['text'])
-    url = "http://isithackday.com/arrpi.php?text=#{text}&format=json"
-    result = open(url).read
-    parsed_result = JSON.parse(result)
-
-    @result = parsed_result['translation']['pirate']
+    @translator = PirateApi.new(params['text'])
   end
 
 
@@ -38,12 +32,7 @@ class ApiController < ApplicationController
     # Ref: https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA
     # as an example
     #================================================
-
-    address = URI.encode(params['address'])
-    url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{address}"
-    result = open(url).read
-    parsed = JSON.parse(result)
-    @coords = parsed['results'][0]['geometry']['location']
+    @geocoder = GeocoderApi.new(params['address'])
   end
 
   def meme_gen_form
@@ -117,5 +106,18 @@ class ApiController < ApplicationController
     #
     # Ref: http://www.divvybikes.com/stations/json/
     #================================================
+
+    url = "http://www.divvybikes.com/stations/json/"
+    result = open(url).read
+    @parsed_result = JSON.parse(result)
+
+    @available_stations = []
+    @parsed_result['stationBeanList'].each do |station_hash|
+      # some code here
+    end
+
+
+
+
   end
 end
