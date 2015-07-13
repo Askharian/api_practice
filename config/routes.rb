@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   get('/auth_api/mashape_intro_form', { :controller => "auth_api", :action => "mashape_intro_form"})
   get('/auth_api/mashape_intro_process', { :controller => "auth_api", :action => "mashape_intro_process"})
+  get('/auth_api/face_detection_form', { :controller => "auth_api", :action => "face_detection_form"})
+  get('/auth_api/face_detection_process', { :controller => "auth_api", :action => "face_detection_process"})
+  get('/auth_api/sentiment_analysis_form', { :controller => "auth_api", :action => "sentiment_analysis_form"})
+  get('/auth_api/sentiment_analysis_process', { :controller => "auth_api", :action => "sentiment_analysis_process"})
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

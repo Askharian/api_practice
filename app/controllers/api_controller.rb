@@ -106,18 +106,6 @@ class ApiController < ApplicationController
     #
     # Ref: http://www.divvybikes.com/stations/json/
     #================================================
-
-    url = "http://www.divvybikes.com/stations/json/"
-    result = open(url).read
-    @parsed_result = JSON.parse(result)
-
-    @available_stations = []
-    @parsed_result['stationBeanList'].each do |station_hash|
-      # some code here
-    end
-
-
-
-
+    @divvy = DivvyApi.new
   end
 end

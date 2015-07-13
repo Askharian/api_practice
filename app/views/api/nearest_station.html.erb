@@ -1,1 +1,7 @@
-<%= @parsed_result %>
+<% @divvy.available_stations(5).each do |station_hash| %>
+  <div>
+    <%= DivvyApi.station_name(station_hash) %>  -
+    <%= DivvyApi.available_bikes(station_hash) %> bikes available
+  </div>
+<% end %>
+
